@@ -1,11 +1,20 @@
-/* eslint-disable prettier/prettier */
-import { Contact,  PhoneType} from './type'
+interface PhoneNumberDictionary {
+  [phone: string]: {
+    num: number;
+  };
+}
+
+interface Contact {
+  name: string;
+  address: string;
+  phones: PhoneNumberDictionary;
+}
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
-function fetchContacts(): Promise<Contact[]> {
+function fetchContacts() {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  const contacts: Contact[] = [
+  const contacts = [
     {
       name: 'Tony',
       address: 'Malibu',
@@ -48,44 +57,42 @@ function fetchContacts(): Promise<Contact[]> {
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  contacts: Contact[] = [];
+  contacts = [];
 
-  // constructor는 기본적으로 타입 정의 안함.
   constructor() {
     this.fetchData();
   }
 
-  fetchData(): void {
+  fetchData() {
     fetchContacts().then(response => {
       this.contacts = response;
     });
   }
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name: string): Contact[] {
+  findContactByName(name) {
     return this.contacts.filter(contact => contact.name === name);
   }
 
-  findContactByAddress(address: string): Contact[] {
+  findContactByAddress(address) {
     return this.contacts.filter(contact => contact.address === address);
   }
 
-  // home, office, studio
-  findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
+  findContactByPhone(phoneNumber, phoneType: string) {
     return this.contacts.filter(
-      contact => contact.phones[phoneType].num === phoneNumber,
+      contact => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-  addContact(contact: Contact): void {
+  addContact(contact) {
     this.contacts.push(contact);
   }
 
-  displayListByName(): string[] {
+  displayListByName() {
     return this.contacts.map(contact => contact.name);
   }
 
-  displayListByAddress(): string[] {
+  displayListByAddress() {
     return this.contacts.map(contact => contact.address);
   }
   /* ------------------------------------------------ */
