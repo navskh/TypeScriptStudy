@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ES6",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "lib": ["ES2016", "DOM", "DOM.Iterable"],
+    "noImplicitAny": true,
+    // "typeRoots": ["./node_modules/@types", "types"],
+    "strict": true,
+  } ,
+  "include": ["./src/**/*"]
+}
