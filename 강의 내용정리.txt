@@ -86,3 +86,88 @@ babel : 자바스크립트의 최신 문법을 모든 브라우저에서 지원 
   // TS 문자열 선언
   var str: string = 'hello';
 
+
+[타입스크립트 프로젝트 시작]
+
+let todoItems: object[]; 
+
+* 인터페이스에 대하여 
+  객체의 자료형을 모음.
+
+  interface User {
+    age: number;
+    name: string;
+  }
+
+
+  // 변수에 활용한 인터페이스
+  var seho : User = {
+    age : 33,
+    name : '세호'
+  }
+
+  // 함수의 스펙(구조)에 인터페이스를 활용
+  interface SumFunction{
+    (a: number, b: number): number;
+  }
+
+  // 함수의 규칙 정의 가능
+  var sum : SumFunction;
+
+  sum = function (a: number, b: number):number{
+    return a + b;
+  }
+
+
+  딕셔너리 : 객체의 요소의 자료형을 지정할 수 있음.
+
+[타입 별칭]
+  type 을 앞에 붙여서 형을 지정할 수 있음
+  - 인터페이스를 사용하여 생성했을 때, vscode에서 인터페이스의 이름만을 보여주지만
+  - type으로 생성했을 때, vscode에서 그 내용까지 다 보여준다.
+    : 타입은 확장이 되지 않는다.
+
+[연산자를 이용한 타입 정의]
+- 유니온 타입
+  타입을 두개 이상 지정할 수 있게 해준다.
+  function logMessage (value : string | number){
+    console.log(value);
+  }
+  
+  만약에 인터페이스의 경우 유니온 타입으로 선언하면
+  (보장된) 공통된 속성만을 일단 가져올 수 있다.
+
+- & 연산자를 사용
+  // never 불가능
+  var capt2 : string & number & boolean;
+
+  인터페이스를 & 를 사용하여 선언하면
+  모든 속성을 다 사용할 수 있다.
+
+  function askSomeone(someone: Developer3 | Person3){
+  
+  }
+  
+  askSomeone({name : '디벨로퍼', skill : '웹개발'});
+  askSomeone({name : '캡틴', age: 100});
+  
+  function askSomeone2(someone: Developer3 & Person3){
+    // someone.
+    // someone.name
+    // someone.skill
+    // someone.age
+  }
+  
+  askSomeone2({name : '디벨로퍼', skill : '개발', age: 130});
+
+
+[이넘] 
+  : 특정 값들의 집합을 의미함.
+  DropDown 정해져 있는 목록을 사용할 때 사용함.
+
+  아무것도 안넣으면 그 구성요소의 순서를 숫자로 가져온다. (순서는 1씩 증가)
+  값을 넣으면 해당 값을 가져온다. (문자열의 경우 문자열을 그대로 가져온다.)
+
+  다 배워봤는데, 이럴바엔 객체 쓰면 되지 않나는 생각밖에 안듬...
+
+  - 활용 사례
